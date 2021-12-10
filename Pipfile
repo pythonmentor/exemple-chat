@@ -8,6 +8,8 @@ django = "==3.2"
 channels = "*"
 redis = "*"
 channels-redis = "*"
+django-crispy-forms = "*"
+crispy-bootstrap5 = "*"
 
 [dev-packages]
 
