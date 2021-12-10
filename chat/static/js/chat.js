@@ -4,11 +4,23 @@ const chatSocket = new WebSocket(url);
 
 chatSocket.addEventListener('message', event => {
     const data = JSON.parse(event.data);
-    const message = data.message;
+    const datetime = new Date(data['datetime']).toLocaleString('fr-FR', { timeZone: 'Europe/Paris' });
+    console.log(datetime);
+
     const chat = document.querySelector('#chat');
     const messageElement = document.createElement('div');
     messageElement.classList.add('message');
-    messageElement.textContent = message;
+    messageElement.classList.add(data.source);
+    messageElement.innerHTML = '<strong class="username"></strong> <span class="date"></span><br><span class="chat-message"></span>';
+
+    const username = messageElement.querySelector('.username');
+    const date = messageElement.querySelector('.date');
+    const chatMessage = messageElement.querySelector('.chat-message');
+
+    username.textContent = `@${data.name}`;
+    date.textContent = datetime;
+    chatMessage.textContent = `> ${data.message}`;
+
     chat.appendChild(messageElement);
     messageElement.scrollIntoView();
 });
