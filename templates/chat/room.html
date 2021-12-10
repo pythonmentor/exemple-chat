@@ -13,5 +13,7 @@
   </div>
 {% endblock %}
 
-{% block domready %}
-{% endblock %}
+{% block bottom_scripts %}
+{{ block.super }}
+<script src="{% static 'js/chat.js' %}"></script>
+{% endblock bottom_scripts %}
